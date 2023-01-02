@@ -1,0 +1,16 @@
+name: build-and-setup
+run-name: Setup by ${{ github.actor }}
+on: [push]
+jobs:
+  hello-from-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Backend hello step 
+        id: hello
+        uses: ./
+        with:
+          who-to-greet: 'Frontend'
+      - name: Output time of greeting
+        run: echo "Greeting time ${{ steps.hello.outputs.time}}"
