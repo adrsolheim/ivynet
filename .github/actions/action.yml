@@ -12,5 +12,6 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  working-directory: ./backend
   args:
     - ${{ inputs.who-to-greet }}

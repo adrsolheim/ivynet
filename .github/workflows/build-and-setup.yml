@@ -1,15 +1,21 @@
-name: build-and-setup
+name: Build and Setup Workflow
 run-name: Setup by ${{ github.actor }}
-on: [push]
+on: [push, pull_request]
 jobs:
-  hello-from-backend:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+
       - name: Backend hello step 
         id: hello
-        uses: ./
+        uses: ./.github/actions
         with:
           who-to-greet: 'Frontend'
       - name: Output time of greeting
