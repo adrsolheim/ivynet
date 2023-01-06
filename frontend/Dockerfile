@@ -2,12 +2,17 @@ FROM node:18 AS build
 
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
-RUN npm install @supabase/supabase-js
-COPY . ./
-RUN npm run build
+COPY ./package.json ./
+COPY ./package-lock.json ./
 
-FROM nginx:1.23-alpine
-COPY --from=build /app/public /usr/share/nginx/html
+RUN npm install -g pnpm
+RUN pnpm install
+
+COPY . ./
+
+RUN pnpm run build
+
+EXPOSE 5555
+ENV HOST=0.0.0.0
+
+CMD ["pnpm", "run", "dev", "--", "--host"]

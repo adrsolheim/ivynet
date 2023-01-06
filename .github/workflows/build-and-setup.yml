@@ -8,15 +8,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-      - name: Backend hello step 
-        id: hello
-        uses: ./.github/actions
+      - name: Build and push
+        uses: docker/build-push-action@v3
         with:
-          who-to-greet: 'Frontend'
-      - name: Output time of greeting
-        run: echo "Greeting time ${{ steps.hello.outputs.time}}"
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: false
+          #tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+
+#      - name: Install Node.js
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: 19
+#
+#      - name: Install pnpm
+#        uses: pnpm/action-setup@v2.2.4
+#        with:
+#          version: 7.23.0
+#      
+#      - name: Install dependencies
+#        run: pnpm install
+#
+#      - name: Backend hello step 
+#        id: hello
+#        #uses: ./.github/actions
+#        uses: ./
+#        with:
+#          who-to-greet: 'Frontend'
+#      - name: Output time of greeting
+#        run: echo "Greeting time ${{ steps.hello.outputs.time}}"
