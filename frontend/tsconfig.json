@@ -2,6 +2,8 @@
   "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
+    "watch": true,
+    "lib": ["dom", "esnext"],
     "useDefineForClassFields": true,
     "module": "ESNext",
     "resolveJsonModule": true,
@@ -15,6 +17,12 @@
     "checkJs": true,
     "isolatedModules": true
   },
-  "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
+  "include": [
+    "src/**/*.d.ts", 
+    "src/**/*.ts", 
+    "src/**/*.js", 
+    "./src/setupTest.ts",
+    "src/**/*.svelte"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -6,9 +6,12 @@ npm install @rollup/plugin-typescript --save-dev
 npm install @supabase/supabase-js
 npm install @sveltejs/kit @sveltejs/adapter-auto --save-dev
 ```
-frontend: testing
+frontend: testing (svelte & sveltekit)
 ```
-
+npm install --save-dev vitest jsdom
+npm install --save-dev vitest-svelte-kit
+npm install --save-dev @testing-library/svelte jest-dom jsdom
+npm install --save-dev @testing-library/jest-dom
 ```
 run
 ```
