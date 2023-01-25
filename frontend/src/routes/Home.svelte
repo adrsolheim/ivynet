@@ -1,6 +1,7 @@
 <script lang="ts">
   import { supabase } from '../supabaseClient'
   import logo from '../assets/eldon.png'
+  import Brews from './Brews.svelte'
 
   let loading = false
 </script>
@@ -16,4 +17,7 @@
         </button>
       </div>
   </div>
+
+  <Brews />
+
 </div>

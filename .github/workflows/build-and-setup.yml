@@ -1,6 +1,9 @@
 name: Build and Setup Workflow
 run-name: Setup by ${{ github.actor }}
 on: [push, pull_request]
+  branches:
+    - main
+    - devel
 
 jobs:
   build:

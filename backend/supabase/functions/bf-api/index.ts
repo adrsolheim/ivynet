@@ -5,43 +5,52 @@
 //import axios, {AxiosError} from 'axios';
 import axiod from "https://deno.land/x/axiod/mod.ts";
 import { serve  } from "https://deno.land/std@0.168.0/http/server.ts";
-
-console.log("Hello from Functions!")
-//console.log(Deno.env.get("VITE_SUPABASE_URL"))
-const env = Deno.env.toObject();
-console.log(env)
+import { corsHeaders } from "../_shared/cors.ts";
 
 const base64encoded = btoa(Deno.env.get("BREWFATHER_USERID")+":"+Deno.env.get("BREWFATHER_KEY"))
-const req = {
+const headers = {
+  "Authorization": `Basic ${base64encoded}` 
+}
+const bfreq = {
   method: "GET",
   url: "https://api.brewfather.app/v1/batches",
-  headers: {
-    "Authorization": `Basic ${base64encoded}` 
-  }
+  headers: headers
 }
 
-try {
-	const res = await axiod.request(req)
-  console.log(res.data)
-} catch (error) {
-	// Handle errors
-}
+
+
 
 serve(async (req) => {
-  const { name } = await req.json()
-  const data = {
-    message: `Hello ${name}!`,
-    secret: 'Not Found'
-  }
-  if (Deno.env.get("VITE_SUPABASE_URL")) {
-    data['secret'] = 'Found'
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders })
   }
 
-  return new Response(
-    JSON.stringify(data),
-    { headers: { "Content-Type": "application/json" } },
-  )
+  try {
+    return getAllBatches()
+  } catch (error) {
+    console.error(error)
+    return new Response(JSON.stringify({ error: error.message }), {
+      headers: {...corsHeaders, 'Content-Type': 'application/json' },
+      status: 400,
+    })
+  }
 })
+
+async function getAllBatches() {
+  try {
+    const res = await axiod.request(bfreq)
+    const batches = res.data
+    return new Response(JSON.stringify(batches), {
+        headers: {...corsHeaders, 'Content-Type': 'application/json' },
+        status: 200,
+    })
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 400,
+    })
+  }
+}
 
 // To invoke:
 // curl -i --location --request POST 'http://localhost:54321/functions/v1/' \
