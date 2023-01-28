@@ -1,10 +1,13 @@
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
-import preprocess from 'svelte-preprocess';
+import { vitePreprocess } from '@sveltejs/kit/vite';
+import adapter from '@sveltejs/adapter-auto';
 
-// vite-plugin-svelte will complain if this file doesn't remain a '.js' file
-export default {
-  // Consult https://svelte.dev/docs#compile-time-svelte-preprocess
-  // for more information about preprocessors
-  // preprocess: vitePreprocess(),
-  preprocess: preprocess(),
-}
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter()
+  }
+};
+
+export default config;
