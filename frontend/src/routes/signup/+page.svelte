@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { supabase } from "../../supabaseClient";
+    import { supabaseClient } from "$lib/db";
 
     let userEmail = ""; 
     let userPassword = "";
@@ -8,7 +8,7 @@
     const handleSignup = async () => {
         try {
             loading = true;
-            const { data, error } = await supabase.auth.signUp({
+            const { data, error } = await supabaseClient.auth.signUp({
                 email: userEmail,
                 password: userPassword,
             })

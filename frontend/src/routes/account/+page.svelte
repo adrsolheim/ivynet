@@ -1,9 +1,10 @@
 <script lang="ts">
+    import { page } from '$app/stores';
     import { onMount } from "svelte";
     import type { AuthSession } from "@supabase/supabase-js";
-    import { supabase } from "../../supabaseClient";
+    import { supabaseClient } from "$lib/db";
   
-    export let session: AuthSession;
+    let session: AuthSession = $page.data.session;
   
     let loading = false
     let username: string | null = null
@@ -19,7 +20,7 @@
         loading = true
         const { user } = session
   
-        const { data, error, status } = await supabase
+        const { data, error, status } = await supabaseClient
           .from('profiles')
           .select('username, website, avatar_url')
           .eq('id', user.id)
@@ -54,7 +55,7 @@
           updated_at: new Date().toISOString(),
         }
   
-        let { error } = await supabase.from('profiles').upsert(updates)
+        let { error } = await supabaseClient.from('profiles').upsert(updates)
   
         if (error) {
           throw error
@@ -84,7 +85,7 @@
         {loading ? 'Saving ...' : 'Update profile'}
       </button>
     </div>
-    <button type="button" class="button block" on:click={() => supabase.auth.signOut()}>
+    <button type="button" class="button block" on:click={() => supabaseClient.auth.signOut()}>
       Sign Out
     </button>
   </form>

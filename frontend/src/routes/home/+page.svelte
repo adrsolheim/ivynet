@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { supabase } from '../../supabaseClient'
+  //import { supabaseClient } from '$lib/db';
   import logo from '../../static/eldon.png'
 
   let login = false

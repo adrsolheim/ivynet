@@ -1,6 +1,13 @@
 <script lang="ts">
-    const navbar = ["Home", "Brews", "Login", "Sign Up"];
-  
+    import { page } from '$app/stores';
+    const regular = ["Home", "Brews", "Login", "Sign Up"];
+    const authenticated = ["Home", "Brews", "Login", "Sign Up", "Account"];
+    let navbar = regular;
+    $: if($page.data.session) {
+        navbar = authenticated;
+    } else {
+        navbar = regular;
+    }
 </script>
 <div>
     <ul>
@@ -14,8 +21,8 @@
 <style>
     ul{
         list-style-type: none;
-        float: none;
         align-content: center;
+        float: none;
     }
     li{
         display: inline;
