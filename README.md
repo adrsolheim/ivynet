@@ -5,6 +5,7 @@ npm install --save-dev @tsconfig/svelte typescript svelte-preprocess svelte-chec
 npm install @rollup/plugin-typescript --save-dev
 npm install @supabase/supabase-js
 npm install @sveltejs/kit @sveltejs/adapter-auto --save-dev
+npm install @supabase/auth-helpers-sveltekit --save-dev
 ```
 frontend: testing (svelte & sveltekit)
 ```
@@ -17,4 +18,9 @@ run
 ```
 sudo docker run --network host -d svelte-frontend
 ```
-
+### `frontend/`
+```
+docker build -t svelte-frontend .
+docker run --network host -d svelte-frontend
+docker stop "$(docker ps | grep svelte-frontend | cut -d " " -f 1)"
+```

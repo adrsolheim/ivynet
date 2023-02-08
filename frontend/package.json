@@ -6,13 +6,17 @@
   "scripts": {
     "dev": "vite --port 5555",
     "build": "vite build",
+    "preview": "vite preview",
+    "package": "svelte-kit package",
+    "prepare": "svelte-kit sync",
+    "local": "VITE_DEV=true vite --port 5555",
     "test": "vitest run src",
     "test:watch": "vitest src",
-    "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^10.0.1",
+    "@supabase/auth-helpers-sveltekit": "^0.8.7",
     "@sveltejs/adapter-auto": "^1.0.0",
     "@sveltejs/kit": "^1.0.5",
     "@sveltejs/vite-plugin-svelte": "^2.0.2",
