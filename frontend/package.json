@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "package": "svelte-kit package",
+    "prepare": "svelte-kit sync",
     "local": "VITE_DEV=true vite --port 5555",
     "test": "vitest run src",
     "test:watch": "vitest src",
