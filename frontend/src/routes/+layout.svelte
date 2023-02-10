@@ -24,9 +24,9 @@
     <Header />
 </header>
 {#if !$page.data.session}
-<h1>Not logged in</h1>
+<h1 class="title">Not logged in</h1>
 {:else}
-<h1>Welcome {$page.data.session.user.email}</h1>
+<h1 class="title">Welcome {$page.data.session.user.email}</h1>
 {/if}
 <main>
     <!-- Page Content -->
@@ -43,11 +43,17 @@
         justify-content: center;
         background-color: #18181A;
     }
+    h1.title {
+        margin-bottom: 50px;
+    }
     main{
         max-width: 960px;
         margin: 20px auto;
     }
     footer{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
         text-align: center;
     }
 </style>
