@@ -18,4 +18,3 @@ if (error instanceof FunctionsHttpError) {
 export let batchStore = readable([], (set) => {
 	set(batches);
 });
-

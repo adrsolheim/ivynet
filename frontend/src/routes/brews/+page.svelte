@@ -1,39 +1,41 @@
 <script lang="ts">
+    import CardList from "$lib/cardlist.svelte";
+    import BeerIcon from "$lib/assets/beermug3.svg";
+    import BatchCard from "$lib/card.svelte";
     import { batchStore } from "./data";
-    import { onMount, setContext } from "svelte";
-    import type { Batch } from "./batch";
-    import { P } from "vitest/dist/types-bae746aa";
-    let _batches: Batch[] = [];
+    import { setContext } from "svelte";
 
     $batchStore.forEach(element => {
-        setContext(element._id, {
-            getBatch: () => element
-        });
+        setContext(element._id, element);
     });
 </script>
 
 <div>
-    <h1>Brews</h1>
+    <h1>Brygg</h1>
+    <CardList>
     {#each $batchStore as brew (brew._id)}
-        <h2><a href='brews/{brew._id}'>{brew.recipe.name}</a></h2> 
-        {#if brew.more}
-            <p><strong>{brew.status}</strong></p>
-        {/if}
+        <BatchCard brewid={brew._id}>
+            <img src={BeerIcon} alt="A beer mug."/>
+            <h2><a href='brews/{brew._id}'>{brew.recipe.name}</a></h2>
+        </BatchCard>
     {:else}
         <h2>No brews available</h2>
     {/each}
+    </CardList>
 </div>
 
 
 <style>
     a{
         text-decoration: none;
-        color: grey;
+        color: #CCA049;
     }
-    h2{
-        transition: transform 0.4s;
+    h1{
+        padding-bottom: 50px;
     }
-    h2:hover{
-        transform: scale(1.5)
+    img{
+        max-width: 200px;
+        max-height: 200px;
+        padding-left: 30px;
     }
 </style>

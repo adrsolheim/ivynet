@@ -6,26 +6,18 @@
     import { getContext } from 'svelte';
     import { page } from '$app/stores';
 
-    const batch: Batch = getContext($page.params.slug);
-/*     export const load = (({ params }) => {
-        console.log(params.slug)
-        let b = $batchStore.find(elem => params.slug == elem._id)
-        if (b) {
-            batch = b;
-        } else {
-            throw error(404, 'Not found');
-        }
-    }) satisfies PageLoad; */
+    const batch: Batch = $batchStore.find(elem => elem._id === $page.params.slug)
 </script>
 {#if batch}
     <div>
-        <p>Name {batch.name}</p>
-        <p>Recipe {batch.recipe}</p>
+        <p>Recipe {batch.recipe.name}</p>
         <p>Batch No. {batch.batchNo}</p>
-        <p>Brewdate {batch.brewDate}</p>
-        <p>Stats {batch.status}</p>
-        <p>Brewed by {batch.brewer}</p>
+        <p>Brewdate {new Date(batch.brewDate).toDateString()}</p>
+        <p>Status: {batch.status}</p>
+        {#if batch.brewer}
+            <p>Brewed by {batch.brewer}</p>
+        {/if}
     </div>
 {:else}
-    <p>No info on batch</p>
+    <p>Could not find batch</p>
 {/if}
