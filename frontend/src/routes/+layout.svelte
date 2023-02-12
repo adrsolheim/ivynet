@@ -23,18 +23,12 @@
 <header>
     <Header />
 </header>
-{#if !$page.data.session}
-<h1>Not logged in</h1>
-{:else}
-<h1>Welcome {$page.data.session.user.email}</h1>
-{/if}
 <main>
     <!-- Page Content -->
     <slot></slot>
 </main>
 
 <footer>
-    Copyright 2023 Adrsolheim
 </footer>
 
 <style>
@@ -48,6 +42,9 @@
         margin: 20px auto;
     }
     footer{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
         text-align: center;
     }
 </style>

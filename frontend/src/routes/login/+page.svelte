@@ -17,7 +17,8 @@
         alert(error.message)
       }
     } finally {
-      loading = false
+      loading = false;
+      userPassword = "";
     }
   }
 </script>

@@ -10,5 +10,4 @@ export interface Batch {
     name: string;
     recipe: Recipe;
     status: string;
-    more?: boolean;
 }
