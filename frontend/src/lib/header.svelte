@@ -19,6 +19,10 @@
 
 
 <style>
+    div {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: large;
+    }
     ul{
         list-style-type: none;
         align-content: center;
@@ -41,7 +45,7 @@
     }
     a{
         display: block;
-        padding: 8px;
+        padding: 6px;
         color: white;
         text-decoration: none;
     }
