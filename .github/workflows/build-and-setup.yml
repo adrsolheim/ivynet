@@ -3,12 +3,8 @@ run-name: Setup by ${{ github.actor }}
 on:
   push:
     branches:
-      - main
-      - devel
-  pull_request:
-    branches:
-      - main
-      - devel
+      - '!main'
+      - '**'
 
 jobs:
   build:
