@@ -2,9 +2,8 @@ name: Build and Setup Workflow
 run-name: Setup by ${{ github.actor }}
 on:
   push:
-    branches:
-      - '!main'
-      - '**'
+    branches-ignore:
+      - "main"
 
 jobs:
   build:
