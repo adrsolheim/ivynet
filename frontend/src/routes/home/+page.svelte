@@ -76,7 +76,9 @@
   <p>
     A personal project designed to experiment with and explore new frameworks and tools.
     New changes are reflected rapidly through a CI/CD pipeline that automatically deploy new changes to production.
-    
+    <br>
+    <br>
+    Source code available on <a href="https://github.com/adrsolheim/ivynet">Github.</a> 
   </p>
 </div>
 
@@ -118,6 +120,9 @@
     div {
       font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
+    a, a:visited, a:hover, a:active {
+      color: inherit;
+    }
     
     .content {
       font-size: large;
@@ -126,7 +131,7 @@
       background: -webkit-linear-gradient(left, rgba(38,38,38,1) 90%, rgba(34,34,34,1) 100%); /* FF3.6+ */
       text-align: left;
       float: left;
-      padding: 16px;
+      padding: 16px 16px 0px 16px;
       margin-bottom: 100px;
       border-left: solid grey;
     }
