@@ -11,7 +11,9 @@
 </script>
 
 <div>
-    <h1>Brygg</h1>
+    <div class="title">
+        <h1>Batches</h1>
+    </div>
     <CardList>
     {#each $batchStore as brew (brew._id)}
         <BatchCard brewid={brew._id}>
@@ -32,6 +34,7 @@
     }
     h1{
         padding-bottom: 50px;
+        display: inline-block;
     }
     img{
         max-width: 200px;

@@ -1,26 +1,20 @@
-frontend: svelte, sveltekit & typescript
-```
-npm create vite@latest frontend -- --template svelte-ts
-npm install --save-dev @tsconfig/svelte typescript svelte-preprocess svelte-check
-npm install @rollup/plugin-typescript --save-dev
-npm install @supabase/supabase-js
-npm install @sveltejs/kit @sveltejs/adapter-auto --save-dev
-npm install @supabase/auth-helpers-sveltekit --save-dev
-```
-frontend: testing (svelte & sveltekit)
-```
-npm install --save-dev vitest jsdom
-npm install --save-dev vitest-svelte-kit
-npm install --save-dev @testing-library/svelte jest-dom jsdom
-npm install --save-dev @testing-library/jest-dom
-```
-run
-```
-sudo docker run --network host -d svelte-frontend
-```
-### `frontend/`
-```
-docker build -t svelte-frontend .
-docker run --network host -d svelte-frontend
-docker stop "$(docker ps | grep svelte-frontend | cut -d " " -f 1)"
-```
+# Overview
+  
+  
+A simple website integrating with an external auth provider (supabase) and third party APIs (e.g., brewfather). 
+
+
+Github actions CI/CD pipeline automatically deploy new changes to production. Technologies and tools used in this project include
+
+- Svelte & SvelteKit
+- Supabase
+- Vercel
+- Github Actions
+- JEST
+- Vite
+- TypeScript
+
+
+## Deployment
+
+Website deployed at [adrsolheim.no](https://adrsolheim.no)
