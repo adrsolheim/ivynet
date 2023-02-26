@@ -9,6 +9,7 @@
         navbar = regular;
     }
 </script>
+<title>Adrsolheim</title>
 <div>
     <ul>
         {#each navbar as nav}
